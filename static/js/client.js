@@ -1,4 +1,4 @@
-const socket = io('https://ge-chat.onrender.com');
+ const socket = io('https://ge-chat.onrender.com');
 
 // Get DOM elements in respective Js variables
 const form = document.getElementById('send-container');
@@ -17,6 +17,7 @@ const append = (message, position) => {
     messageContainer.append(messageElement);
     if (position == 'left') {
         audio.play();
+        audio.volume = 0.4;
     }
 }
 
@@ -25,13 +26,13 @@ const append = (message, position) => {
 //getname() function
 function getname() {
     //taking input
-    const tname = prompt("Enter your name to join\n(5-20 characters)");
+    const tname = prompt("Enter your name to join\n(2-20 characters)");
     //if input is not null
     if ((tname != null)) {
         //removing extra whitespaces
         const tempname = tname.trim();
         //if input is greater than 5
-        if ((tempname.length) >= 5) {
+        if ((tempname.length) >= 2) {
             if ((tempname.length) > 20) {
                 //trim tempname to 20 charecters and save it to name
                 name = (tempname.substring(0, 20));
@@ -41,7 +42,7 @@ function getname() {
             }
             socket.emit('new-user-joined', name);
         } else {
-            //retry if input is less than 5
+            //retry if input is less than 2
             getname();
         }
     } else {
@@ -59,7 +60,7 @@ getname()
 
 // If a new user joins, receive his/her name from the server
 socket.on('user-joined', name => {
-    append(`${name} joined the chat`, 'left')
+    append(`${name} is lurking about `, 'left')
 })
 
 // If server sends a message, receive it
@@ -69,14 +70,14 @@ socket.on('receive', data => {
 
 // If a user leaves the chat, append the info to the container
 socket.on('left', name => {
-    append(`${name} left the chat`, 'left')
+    append(`${name} had to go get some milk`, 'left')
 })
 
 // If the form gets submitted, send server the message
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     const message = messageInput.value;
-    append(`You: ${message}`, 'right');
+    append(`${message}`, 'right');
     socket.emit('send', message);
     messageInput.value = ''
 })
