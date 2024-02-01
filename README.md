@@ -21,8 +21,8 @@ To deploy this project run
 * put the cloned folder into your webserver root folder and host it.
 
 ```bash
-  cd Live-Group-Chat/server
-  npm index.js
+  cd moe-chat/server
+  node index.js
 ```
 ## Note
 * To change the websocket port, change the port in index.html on line 13, line 1 on static/js/client.js, line 2 on server/index.js from 8000 to your port
