@@ -3,7 +3,7 @@ This is a group chat application which uses web-socket. made with nodejs and soc
 
 ## Installation
 
-Install my-project with npm
+Install project with npm
 requires nodejs, npm, socket.io
 
 ```bash
