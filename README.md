@@ -29,9 +29,9 @@ To deploy this project run
 * To change HTTP port, add your port in server/index.js on line 4
 
   ##TO DO LIST
-
+```bash
   -sending images
   -custom emote picker
   -user profiles
-  
+  ```
   
